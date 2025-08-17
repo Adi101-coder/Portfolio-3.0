@@ -1,0 +1,275 @@
+/* Floating Dock Social Media Component */
+
+/* Desktop Floating Dock */
+.floating-dock-desktop {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: end;
+  gap: 16px;
+  padding: 16px;
+  padding-bottom: 12px;
+  border-radius: 50px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.floating-dock-desktop.light {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.floating-dock-desktop.dark {
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Floating Dock Items */
+.floating-dock-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  background: transparent !important;
+  border: none !important;
+}
+
+.floating-dock-item:hover {
+  transform: translateY(-2px);
+}
+
+/* Icon Container */
+.floating-dock-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+.floating-dock-icon-container.light {
+  color: #000000;
+}
+
+.floating-dock-icon-container.dark {
+  color: #ffffff;
+}
+
+.floating-dock-item.light .floating-dock-icon-container {
+  color: #000000;
+}
+
+.floating-dock-item.dark .floating-dock-icon-container {
+  color: #ffffff;
+}
+
+.floating-dock-item.light:hover .floating-dock-icon-container {
+  color: #ffffff;
+  text-shadow: 0 0 15px rgba(0, 0, 0, 0.8), 0 0 25px rgba(0, 0, 0, 0.6);
+  filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.7));
+}
+
+.floating-dock-item.dark:hover .floating-dock-icon-container {
+  color: #000000;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 25px rgba(255, 255, 255, 0.6);
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.7));
+}
+
+.floating-dock-item:hover .floating-dock-icon-container {
+  transform: scale(1.3);
+}
+
+/* Tooltip */
+.floating-dock-tooltip {
+  position: absolute;
+  top: -32px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 1001;
+}
+
+.floating-dock-tooltip.light {
+  background: rgba(0, 0, 0, 0.9);
+  color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.floating-dock-tooltip.dark {
+  background: rgba(255, 255, 255, 0.9);
+  color: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Mobile Floating Dock */
+.floating-dock-mobile {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  display: none;
+}
+
+.floating-dock-mobile-menu {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.floating-dock-mobile-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  background: transparent !important;
+  border: none !important;
+}
+
+.floating-dock-mobile-item:hover {
+  transform: scale(1.1);
+}
+
+.floating-dock-mobile-item.light {
+  color: #000000;
+}
+
+.floating-dock-mobile-item.dark {
+  color: #ffffff;
+}
+
+.floating-dock-mobile-item.light:hover {
+  color: #ffffff;
+  text-shadow: 0 0 15px rgba(0, 0, 0, 0.8), 0 0 25px rgba(0, 0, 0, 0.6);
+  filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.7));
+}
+
+.floating-dock-mobile-item.dark:hover {
+  color: #000000;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 25px rgba(255, 255, 255, 0.6);
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.7));
+}
+
+.floating-dock-mobile-item:hover .floating-dock-icon {
+  transform: scale(1.3);
+}
+
+.floating-dock-icon {
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+/* Toggle Button */
+.floating-dock-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 16px;
+  background: transparent !important;
+}
+
+.floating-dock-toggle.light {
+  color: #000000;
+}
+
+.floating-dock-toggle.dark {
+  color: #ffffff;
+}
+
+.floating-dock-toggle:hover {
+  transform: scale(1.1);
+}
+
+.floating-dock-toggle.light:hover {
+  color: #ffffff;
+  text-shadow: 0 0 15px rgba(0, 0, 0, 0.8), 0 0 25px rgba(0, 0, 0, 0.6);
+  filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.7));
+}
+
+.floating-dock-toggle.dark:hover {
+  color: #000000;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 25px rgba(255, 255, 255, 0.6);
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.7));
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .floating-dock-desktop {
+    display: none;
+  }
+  
+  .floating-dock-mobile {
+    display: block;
+  }
+}
+
+@media (min-width: 769px) {
+  .floating-dock-desktop {
+    display: flex;
+  }
+  
+  .floating-dock-mobile {
+    display: none;
+  }
+}
+
+/* Animation Enhancements */
+.floating-dock-desktop {
+  animation: dockFloat 6s ease-in-out infinite;
+}
+
+@keyframes dockFloat {
+  0%, 100% { 
+    transform: translateX(-50%) translateY(0px); 
+  }
+  50% { 
+    transform: translateX(-50%) translateY(-8px); 
+  }
+}
+
+/* Hover Effects */
+.floating-dock-item a {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.floating-dock-item a:hover {
+  text-decoration: none;
+  color: inherit;
+} 

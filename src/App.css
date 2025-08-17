@@ -1,0 +1,325 @@
+:root {
+  /* Vorta-inspired theme colors */
+  --primary-bg: #111827;
+  /* Dark background similar to Vorta */
+  --secondary-bg: #1f2937;
+  /* Slightly lighter dark background */
+  --text-primary: #f9fafb;
+  /* Light text for dark background */
+  --text-secondary: #d1d5db;
+  /* Lighter grey for secondary text */
+  --accent-color: #00FF88;
+  /* Vibrant green accent */
+  --border-color: rgba(255, 255, 255, 0.15);
+  /* Slightly stronger border */
+  --card-bg: rgba(255, 255, 255, 0.08);
+  /* Slightly more opaque card background */
+  --hover-bg: rgba(255, 255, 255, 0.12);
+  /* Slightly more opaque hover background */
+  --gradient-start: #00FF88;
+  --gradient-end: #00B8FF;
+}
+
+/* Base styles with performance optimizations */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Performance optimizations */
+* {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* GPU acceleration for animations */
+.App,
+[class*="motion-"],
+[class*="animated-"],
+.project-card,
+.myworks-card {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark-mode body {
+  background-color: #000;
+  color: var(--text-primary);
+}
+
+.light-mode body {
+  background-color: #ffffff;
+  color: var(--text-primary);
+}
+
+.App {
+  min-height: 100vh;
+  position: relative;
+  transition: background-color 0.3s ease;
+}
+
+.dark-mode .App {
+  background-color: #000 !important;
+}
+
+.light-mode .App {
+  background-color: #ffffff !important;
+}
+
+/* Theme classes */
+.dark-mode {
+  --primary-bg: #111827;
+  --secondary-bg: #1f2937;
+  --text-primary: #f9fafb;
+  --text-secondary: #d1d5db;
+  --border-color: rgba(255, 255, 255, 0.15);
+  --card-bg: rgba(255, 255, 255, 0.08);
+  --hover-bg: rgba(255, 255, 255, 0.12);
+}
+
+.light-mode {
+  --primary-bg: #FFFFFF;
+  --secondary-bg: #F0F0F0;
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --border-color: rgba(0, 0, 0, 0.1);
+  --card-bg: rgba(0, 0, 0, 0.05);
+  --hover-bg: rgba(0, 0, 0, 0.08);
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.theme-toggle:hover {
+  transform: translateY(-2px);
+  background: var(--hover-bg);
+}
+
+.theme-toggle svg {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s ease;
+}
+
+.theme-toggle:hover svg {
+  transform: rotate(15deg);
+}
+
+/* Main Content */
+main {
+  position: relative;
+  z-index: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .theme-toggle {
+    width: 36px;
+    height: 36px;
+  }
+
+  .theme-toggle svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* Reduced Motion and Performance */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Smooth scrolling optimization */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Image optimization */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  transform: translateZ(0);
+}
+
+/* Prevent layout shifts */
+.project-image,
+.myworks-image {
+  aspect-ratio: 16/10;
+  object-fit: cover;
+}
+
+/* Optimize animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+#root {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  width: 100%;
+}
+
+/* Social media dock removed for cleaner design */
+
+/* Original Download Resume Button */
+.download-resume-btn {
+  background: #232323;
+  color: #ffffff;
+  border: 1px solid #6b7280;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.download-resume-btn:hover {
+  background: #6b7280;
+  border-color: #6b7280;
+  color: #ffffff;
+  transform: translateY(-2px) scale(1.04);
+}
+
+.download-resume-btn i {
+  transition: none;
+}
+
+.download-resume-btn:hover i {
+  transform: none;
+}
+
+/* Global styles to prevent horizontal scrolling */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.App {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Ensure all sections fit within viewport */
+section {
+  width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+/* Responsive container */
+.container {
+  width: 100%;
+  max-width: 100%;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+/* Theme toggle positioning improvements */
+.theme-toggle-container {
+  position: fixed;
+  top: 5rem;
+  right: 1.5rem;
+  z-index: 1001;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 0.75rem;
+  }
+  
+  .theme-toggle-container {
+    top: 4.5rem;
+    right: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 0.5rem;
+  }
+  
+  .theme-toggle-container {
+    top: 4rem;
+    right: 1rem;
+  }
+  
+  /* Improve touch targets on mobile */
+  button, a, .clickable {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+@media (max-width: 320px) {
+  .container {
+    padding: 0 0.25rem;
+  }
+  
+  .theme-toggle-container {
+    top: 3.5rem;
+    right: 0.75rem;
+  }
+}

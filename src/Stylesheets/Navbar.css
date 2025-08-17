@@ -1,0 +1,222 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--primary-bg);
+  color: var(--text-primary);
+  overflow-x: hidden;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Enhanced glass effect when scrolled */
+.navbar-scrolled {
+  backdrop-filter: blur(25px) saturate(200%);
+  -webkit-backdrop-filter: blur(25px) saturate(200%);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+}
+
+/* Dark mode navbar */
+.dark-mode .navbar {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.dark-mode .navbar-scrolled {
+  background-color: rgba(0, 0, 0, 0.85);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+}
+
+/* Light mode navbar */
+.light-mode .navbar {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.light-mode .navbar-scrolled {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+}
+
+/* Navbar Links */
+.navbar a {
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  padding: 0.5rem 0;
+}
+
+/* Dark mode links */
+.dark-mode .navbar a {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.dark-mode .navbar a:hover {
+  color: #ffffff;
+}
+
+/* Light mode links */
+.light-mode .navbar a {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.light-mode .navbar a:hover {
+  color: #000000;
+}
+
+.navbar a:hover {
+  transform: translateY(-1px);
+}
+
+.navbar a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #000;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark-mode .navbar a::after {
+  background: linear-gradient(90deg, #fff, #888);
+}
+
+.light-mode .navbar a::after {
+  background: linear-gradient(90deg, #000, #888);
+}
+
+.navbar a:hover::after {
+  width: 100%;
+}
+
+/* Logo/Brand Link */
+.navbar a:first-child {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.dark-mode .navbar a:first-child {
+  color: #ffffff;
+}
+
+.light-mode .navbar a:first-child {
+  color: #000000;
+}
+
+.navbar a:first-child::after {
+  background: #000;
+}
+
+.dark-mode .navbar a:first-child::after {
+  background: linear-gradient(90deg, #fff, #888);
+}
+
+.light-mode .navbar a:first-child::after {
+  background: linear-gradient(90deg, #000, #888);
+}
+
+/* Theme Toggle Container - Moved down to avoid navbar collision */
+.theme-toggle-container {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  z-index: 1001;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem;
+    width: 100%;
+    max-width: 100vw;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+  
+  .navbar a {
+    font-size: 0.9rem;
+  }
+  
+  .navbar a:first-child {
+    font-size: 1.3rem;
+  }
+  
+  .theme-toggle-container {
+    top: 70px;
+    right: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0.8rem;
+    width: 100%;
+    max-width: 100vw;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+  
+  .navbar a {
+    font-size: 0.8rem;
+  }
+  
+  .navbar a:first-child {
+    font-size: 1.1rem;
+  }
+  
+  .theme-toggle-container {
+    top: 60px;
+    right: 10px;
+  }
+}
+
+@media (max-width: 320px) {
+  .navbar {
+    padding: 0.6rem;
+    width: 100%;
+    max-width: 100vw;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+  
+  .navbar a {
+    font-size: 0.7rem;
+  }
+  
+  .navbar a:first-child {
+    font-size: 1rem;
+  }
+  
+  .theme-toggle-container {
+    top: 55px;
+    right: 8px;
+  }
+}

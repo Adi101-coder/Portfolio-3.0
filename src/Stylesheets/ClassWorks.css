@@ -1,0 +1,653 @@
+/* ClassWorks Component Styles */
+.classworks-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 5rem;
+  transition: all 0.3s;
+}
+
+.classworks-title {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 900;
+  margin-bottom: 2rem;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+.classworks-subtitle {
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  text-align: center;
+  margin-bottom: 3rem;
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+.classworks-grid {
+  display: flex;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0 1rem;
+}
+
+.classworks-card {
+  background: var(--card-bg);
+  border: 2px solid var(--card-border);
+  border-radius: 18px;
+  padding: 2.5rem 2.5rem 2rem 2.5rem;
+  min-width: 200px;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: var(--card-shadow);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.classworks-card:hover {
+  transform: scale(1.07);
+  box-shadow: var(--card-shadow-hover);
+}
+
+.classworks-folder-name {
+  margin-top: 1.5rem;
+  font-weight: 700;
+  font-size: 1.3rem;
+  letter-spacing: 0.01em;
+  text-align: center;
+}
+
+/* Modal Styles */
+.classworks-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 2rem;
+}
+
+.classworks-modal-content {
+  background: var(--modal-bg);
+  border-radius: 20px;
+  padding: 2rem;
+  max-width: 800px;
+  width: 100%;
+  max-height: 80vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.classworks-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  gap: 1rem;
+}
+
+.classworks-modal-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-color);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.classworks-last-updated {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+}
+
+.classworks-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.classworks-auto-refresh-btn {
+  background: none;
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  min-width: 36px;
+  height: 36px;
+}
+
+.classworks-auto-refresh-btn:hover {
+  background: var(--hover-bg, rgba(0, 0, 0, 0.05));
+  transform: scale(1.05);
+}
+
+.classworks-auto-refresh-btn.active {
+  background: var(--primary-color, #3b82f6);
+  color: white;
+  border-color: var(--primary-color, #3b82f6);
+}
+
+.classworks-auto-refresh-btn .spinning {
+  animation: spin 2s linear infinite;
+}
+
+.classworks-refresh-btn {
+  background: none;
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  min-width: 36px;
+  height: 36px;
+}
+
+.classworks-refresh-btn:hover {
+  background: var(--hover-bg, rgba(0, 0, 0, 0.05));
+  transform: scale(1.05);
+}
+
+.classworks-refresh-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.classworks-refresh-btn .spinning {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.classworks-close-button {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  min-width: 36px;
+  height: 36px;
+}
+
+.classworks-close-button:hover {
+  background: var(--hover-bg, rgba(0, 0, 0, 0.05));
+}
+
+.classworks-file-list {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.classworks-file-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  background: var(--file-item-bg);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  transition: all 0.2s;
+}
+
+.classworks-file-item:hover {
+  transform: scale(1.02);
+}
+
+.classworks-file-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.classworks-file-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.classworks-preview-button {
+  background: var(--secondary-color, #6b7280);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.2s;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.classworks-preview-button:hover {
+  transform: scale(1.05);
+  background: var(--secondary-hover, #4b5563);
+}
+
+.classworks-coming-soon {
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.classworks-file-name {
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 0.25rem;
+  font-size: 1rem;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.classworks-file-meta {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.classworks-download-button {
+  background: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.2s;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.classworks-download-button:hover {
+  transform: scale(1.05);
+}
+
+.classworks-loading {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-muted);
+}
+
+.classworks-error {
+  text-align: center;
+  padding: 2rem;
+  color: #ef4444;
+}
+
+/* Dark Mode Variables */
+.dark-mode .classworks-container {
+  background: #0a0a0a;
+  color: #fff;
+}
+
+.dark-mode .classworks-subtitle {
+  color: #999;
+}
+
+.dark-mode .classworks-card {
+  --card-bg: #18181b;
+  --card-border: var(--card-color);
+  --card-shadow: 0 4px 24px rgba(0,0,0,0.4);
+  --card-shadow-hover: 0 8px 32px rgba(0,0,0,0.6);
+}
+
+.dark-mode .classworks-modal-content {
+  --modal-bg: #1a1a1a;
+}
+
+.dark-mode .classworks-modal-title {
+  --text-color: #fff;
+}
+
+.dark-mode .classworks-close-button {
+  --text-color: #fff;
+}
+
+.dark-mode .classworks-file-item {
+  --file-item-bg: #2a2a2a;
+  --border-color: #333;
+}
+
+.dark-mode .classworks-file-name {
+  --text-color: #fff;
+}
+
+.dark-mode .classworks-file-meta {
+  --text-muted: #999;
+}
+
+.dark-mode .classworks-loading {
+  --text-muted: #999;
+}
+
+.dark-mode .classworks-download-button {
+  background: #3b82f6;
+}
+
+.dark-mode .classworks-download-button:hover {
+  background: #2563eb;
+}
+
+.dark-mode .classworks-preview-button {
+  background: #6b7280;
+}
+
+.dark-mode .classworks-preview-button:hover {
+  background: #4b5563;
+}
+
+.dark-mode .classworks-coming-soon {
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+}
+
+.dark-mode .classworks-auto-refresh-btn,
+.dark-mode .classworks-refresh-btn {
+  --border-color: #333;
+  --text-color: #fff;
+  --hover-bg: rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .classworks-last-updated {
+  --text-muted: #999;
+}
+
+/* Light Mode Variables */
+.light-mode .classworks-container {
+  background: #ffffff;
+  color: #000;
+}
+
+.light-mode .classworks-subtitle {
+  color: #666;
+}
+
+.light-mode .classworks-card {
+  --card-bg: #f8f9fa;
+  --card-border: var(--card-color);
+  --card-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  --card-shadow-hover: 0 8px 32px rgba(0,0,0,0.15);
+}
+
+.light-mode .classworks-modal-content {
+  --modal-bg: #fff;
+}
+
+.light-mode .classworks-modal-title {
+  --text-color: #000;
+}
+
+.light-mode .classworks-close-button {
+  --text-color: #000;
+}
+
+.light-mode .classworks-file-item {
+  --file-item-bg: #f8f9fa;
+  --border-color: #e0e0e0;
+}
+
+.light-mode .classworks-file-name {
+  --text-color: #000;
+}
+
+.light-mode .classworks-file-meta {
+  --text-muted: #666;
+}
+
+.light-mode .classworks-loading {
+  --text-muted: #666;
+}
+
+.light-mode .classworks-download-button {
+  --primary-color: #3b82f6;
+}
+
+.light-mode .classworks-preview-button {
+  background: #6b7280;
+}
+
+.light-mode .classworks-preview-button:hover {
+  background: #4b5563;
+}
+
+.light-mode .classworks-coming-soon {
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+}
+
+.light-mode .classworks-auto-refresh-btn,
+.light-mode .classworks-refresh-btn {
+  --border-color: #e0e0e0;
+  --text-color: #000;
+  --hover-bg: rgba(0, 0, 0, 0.05);
+}
+
+.light-mode .classworks-last-updated {
+  --text-muted: #666;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .classworks-grid {
+    gap: 2rem;
+  }
+  
+  .classworks-card {
+    min-width: 180px;
+    min-height: 160px;
+    padding: 2rem 2rem 1.5rem 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .classworks-container {
+    padding-top: 4rem;
+  }
+  
+  .classworks-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 1.5rem;
+  }
+  
+  .classworks-subtitle {
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+    margin-bottom: 2rem;
+  }
+  
+  .classworks-grid {
+    gap: 1.5rem;
+    padding: 0 0.5rem;
+  }
+  
+  .classworks-card {
+    min-width: 160px;
+    min-height: 140px;
+    padding: 1.5rem 1.5rem 1rem 1.5rem;
+  }
+  
+  .classworks-folder-name {
+    font-size: 1.1rem;
+  }
+  
+  .classworks-modal {
+    padding: 1rem;
+  }
+  
+  .classworks-modal-content {
+    padding: 1.5rem;
+    max-width: 95vw;
+    max-height: 90vh;
+  }
+  
+  .classworks-modal-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+  
+  .classworks-modal-title {
+    font-size: 1.2rem;
+  }
+  
+  .classworks-header-actions {
+    justify-content: flex-end;
+  }
+  
+  .classworks-file-name {
+    font-size: 0.9rem;
+  }
+  
+  .classworks-file-item {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+  
+  .classworks-file-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .classworks-file-actions {
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 480px) {
+  .classworks-container {
+    padding-top: 3rem;
+  }
+  
+  .classworks-title {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    margin-bottom: 1rem;
+  }
+  
+  .classworks-subtitle {
+    font-size: clamp(0.8rem, 2vw, 1rem);
+    margin-bottom: 1.5rem;
+  }
+  
+  .classworks-grid {
+    gap: 1rem;
+    padding: 0 0.25rem;
+  }
+  
+  .classworks-card {
+    min-width: 140px;
+    min-height: 120px;
+    padding: 1rem 1rem 0.75rem 1rem;
+  }
+  
+  .classworks-folder-name {
+    font-size: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .classworks-modal {
+    padding: 0.5rem;
+  }
+  
+  .classworks-modal-content {
+    padding: 1rem;
+    max-width: 98vw;
+    max-height: 95vh;
+  }
+  
+  .classworks-modal-title {
+    font-size: 1.1rem;
+  }
+  
+  .classworks-header-actions {
+    gap: 0.25rem;
+  }
+  
+  .classworks-auto-refresh-btn,
+  .classworks-refresh-btn,
+  .classworks-close-button {
+    min-width: 32px;
+    height: 32px;
+    padding: 0.4rem;
+  }
+  
+  .classworks-file-item {
+    padding: 0.75rem;
+  }
+  
+  .classworks-file-name {
+    font-size: 0.85rem;
+  }
+  
+  .classworks-download-button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+  
+  .classworks-preview-button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+  
+  .classworks-file-actions {
+    gap: 0.25rem;
+  }
+  
+  .classworks-coming-soon {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+} 
