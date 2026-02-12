@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ThemeContext } from '../context/ThemeContext'; // Adjust path as needed
+import { ThemeContext } from '../context/ThemeContext';
+import { addContactSubmission } from '../firebase/contactService';
 
 const Contact = () => {
   const { theme } = useContext(ThemeContext) || { theme: 'dark' }; // Fallback to dark if context not available
@@ -16,6 +17,8 @@ const Contact = () => {
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [animatedCards, setAnimatedCards] = useState([]);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null); // 'success' or 'error'
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -170,31 +173,42 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const subject = encodeURIComponent(formData.subject || 'Contact from Website');
-    const body = encodeURIComponent(`Hi Adit,
+    setIsSubmitting(true);
+    setSubmitStatus(null);
 
-Name: ${formData.name}
-Email: ${formData.email}
+    try {
+      // Save to Supabase
+      const result = await addContactSubmission(formData);
 
-Message:
-${formData.message}
+      if (result.success) {
+        setSubmitStatus('success');
+        
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: ''
+        });
 
-Best regards,
-${formData.name}`);
-    
-    const mailtoLink = `mailto:aditkatiyar101@gmail.com?subject=${subject}&body=${body}`;
-    window.location.href = mailtoLink;
-    
-    setIsFormVisible(false);
-    setSelectedMethod(null);
-    setFormData({
-      name: '',
-      email: '',
-      subject: '',
-      message: ''
-    });
+        // Close form after 2 seconds
+        setTimeout(() => {
+          setIsFormVisible(false);
+          setSelectedMethod(null);
+          setSubmitStatus(null);
+        }, 2000);
+      } else {
+        setSubmitStatus('error');
+        console.error('Submission error:', result.error);
+      }
+    } catch (error) {
+      setSubmitStatus('error');
+      console.error('Error submitting form:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const closeForm = () => {
@@ -583,23 +597,64 @@ ${formData.name}`);
 
                   <motion.button
                     type="submit"
+                    disabled={isSubmitting}
                     style={{
                       width: '100%',
                       padding: '1rem',
-                      background: `linear-gradient(135deg, ${theme === 'dark' ? '#ffffff' : '#000000'}, ${theme === 'dark' ? '#cccccc' : '#666666'})`,
+                      background: isSubmitting 
+                        ? '#cccccc' 
+                        : `linear-gradient(135deg, ${theme === 'dark' ? '#ffffff' : '#000000'}, ${theme === 'dark' ? '#cccccc' : '#666666'})`,
                       color: theme === 'dark' ? '#000000' : '#ffffff',
                       border: 'none',
                       borderRadius: '10px',
                       fontSize: '1rem',
                       fontWeight: '600',
-                      cursor: 'pointer'
+                      cursor: isSubmitting ? 'not-allowed' : 'pointer',
+                      opacity: isSubmitting ? 0.7 : 1
                     }}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+                    whileHover={!isSubmitting ? { scale: 1.02 } : {}}
+                    whileTap={!isSubmitting ? { scale: 0.98 } : {}}
                     variants={inputVariants}
                   >
-                    Send Message
+                    {isSubmitting ? 'Sending...' : 'Send Message'}
                   </motion.button>
+
+                  {/* Success/Error Messages */}
+                  {submitStatus === 'success' && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      style={{
+                        marginTop: '1rem',
+                        padding: '1rem',
+                        background: '#4ade80',
+                        color: '#ffffff',
+                        borderRadius: '10px',
+                        textAlign: 'center',
+                        fontWeight: '600'
+                      }}
+                    >
+                      ✓ Message sent successfully! I'll get back to you soon.
+                    </motion.div>
+                  )}
+
+                  {submitStatus === 'error' && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      style={{
+                        marginTop: '1rem',
+                        padding: '1rem',
+                        background: '#ef4444',
+                        color: '#ffffff',
+                        borderRadius: '10px',
+                        textAlign: 'center',
+                        fontWeight: '600'
+                      }}
+                    >
+                      ✗ Failed to send message. Please try again.
+                    </motion.div>
+                  )}
                 </motion.form>
               </motion.div>
             </motion.div>
