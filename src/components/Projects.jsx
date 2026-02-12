@@ -5,9 +5,9 @@ import { ThemeContext } from '../context/ThemeContext';
 import '../Stylesheets/Projects.css';
 
 // Import project images
-import hireIndexImage from '../assets/HireIndex.png';
 import amanstarImage from '../assets/Amanstar.png';
-import vrikshaImage from '../assets/Vriksha.png';
+import thinkcraftlabs from '../assets/thinkcraftlabs.png';
+import blitzdutch from '../assets/blitzdutch.png';
 
 const Projects = memo(() => {
   const navigate = useNavigate();
@@ -16,12 +16,12 @@ const Projects = memo(() => {
   const projects = [
     {
       id: 1,
-      title: "HireIndex",
-      description: "AI-powered resume parser that analyzes resumes against ATS requirements and returns comprehensive ATS scores with detailed feedback for improvement.",
-      tech: "React • TypeScript • Express.js • Google Gemini AI • PDF/Word Parsing",
-      image: hireIndexImage,
-      liveUrl: "https://hire-index-v1-5e4w.vercel.app/",
-      githubUrl: "https://github.com/AxAbhishek0309/HireIndex-v1",
+      title: "ThinkCraftLabs",
+      description: "Transforming ideas into reality through innovative design and 3D printing. A comprehensive platform showcasing cutting-edge design solutions and additive manufacturing capabilities.",
+      tech: "React • Node.js • 3D Printing • Design Innovation",
+      image: thinkcraftlabs,
+      liveUrl: "https://thinkcraftlabs.onrender.com/",
+      githubUrl: "https://github.com/Adi101-coder/ThinkCraftLabs",
       status: "Live"
     },
     {
@@ -36,12 +36,12 @@ const Projects = memo(() => {
     },
     {
       id: 3,
-      title: "Vriksha",
-      description: "E-commerce platform for premium plants with 3D visualizations, AI chatbot, and comprehensive plant care features.",
-      tech: "Next.js 15 • TypeScript • TailwindCSS • Three.js • NextAuth.js",
-      image: vrikshaImage,
-      liveUrl: "https://vrikshaby-gradians.vercel.app/",
-      githubUrl: "https://github.com/AxAbhishek0309/VrikshabyGradians",
+      title: "BlitzDutch",
+      description: "A modern web application featuring innovative solutions and cutting-edge technology. Built with modern web stack for optimal performance and user experience.",
+      tech: "React • Modern Web Stack • Innovative Design",
+      image: blitzdutch,
+      liveUrl: "https://blitz-dutch.vercel.app/",
+      githubUrl: "https://github.com/Adi101-coder/BlitzDutch",
       status: "Live"
     },
     {
